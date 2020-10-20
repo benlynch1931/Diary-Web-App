@@ -32,7 +32,7 @@ class DiaryEntry
     if @entry_body.empty? || @entry_title.empty?
       puts "Unable to save. Entry incomplete..."
     else
-      @entry_hash[:date] = Time.now.strftime("%d/%m/%Y")
+      @entry_hash[:date] = Time.now.strftime("%Y%m%d")
       @entry_hash[:title] = @entry_title
       @entry_hash[:body] = @entry_body
       @entry_hash
@@ -40,7 +40,13 @@ class DiaryEntry
   end
 
   def add_to_db
+    init_database
 
+    @diary_db.exec "INSERT INTO diary VALUES('1', '\"#{@entry_hash[:date]}\"', '\"#{@entry_hash[:title]}\"', '\"#{@entry_hash[:body]}\"')"
+    @diary_entry.close
+  end
+
+  def init_database
     begin
       @diary_db = PG.connect :dbname => 'diary_manager', :user => 'ben'
       puts "Successfully Connected!"
@@ -52,4 +58,5 @@ class DiaryEntry
       #@bookmark_db.close if @bookmark_db
     end
   end
+
 end
