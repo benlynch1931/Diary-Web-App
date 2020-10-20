@@ -37,4 +37,8 @@ class DiaryEntry
       @entry_hash
     end
   end
+
+  def add_to_db
+
+  end
 end

@@ -60,4 +60,12 @@ describe DiaryEntry do
       expect(diary_entry.save_entry).to eq ({date: Time.now.strftime("%d/%m/%Y"), title: title, body: body})
     end
   end
+
+  context '#add_to_db' do
+    subject(:diary_entry) { DiaryEntry.new }
+
+    it 'responds to call' do
+      expect(diary_entry).to respond_to(:add_to_db)
+    end
+  end
 end
