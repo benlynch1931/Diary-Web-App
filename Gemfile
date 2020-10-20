@@ -11,6 +11,6 @@ gem 'capybara'
 gem 'shotgun'
 
 gem 'rspec'
-gem 'simplecov'
-gem 'simplecov-console'
+gem 'simplecov', require: false
+gem 'simplecov-console', require: false
 gem 'rubocop'

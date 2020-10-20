@@ -36,5 +36,10 @@ describe DiaryEntry do
     it "responds to call" do
       expect(diary_entry).to respond_to(:add_title)
     end
+
+    it "saves user entry to variable" do
+      allow(diary_entry).to receive(:gets).and_return("First Entry")
+      expect(diary_entry.add_title).to eq "First Entry"
+    end
   end
 end

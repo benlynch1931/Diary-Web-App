@@ -20,6 +20,6 @@ class DiaryEntry
   end
 
   def add_title
-    
+    @entry_title = gets.chomp
   end
 end
