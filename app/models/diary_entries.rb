@@ -18,4 +18,8 @@ class DiaryEntry
     end
     @entry_body
   end
+
+  def add_title
+    
+  end
 end

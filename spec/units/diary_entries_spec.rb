@@ -30,5 +30,11 @@ describe DiaryEntry do
     end
   end
 
-  
+  context '#add_title' do
+    subject(:diary_entry) { DiaryEntry.new }
+
+    it "responds to call" do
+      expect(diary_entry).to respond_to(:add_title)
+    end
+  end
 end
