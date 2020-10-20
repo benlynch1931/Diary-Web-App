@@ -1,8 +1,11 @@
+require 'time'
+
 class DiaryEntry
 
   def initialize
     @entry_body = ""
     @entry_title = ""
+    @entry_hash  ={}
 
   end
 
@@ -25,5 +28,13 @@ class DiaryEntry
   end
 
   def save_entry
+    if @entry_body.empty? || @entry_title.empty?
+      puts "Unable to save. Entry incomplete..."
+    else
+      @entry_hash[:date] = Time.now.strftime("%d/%m/%Y")
+      @entry_hash[:title] = @entry_title
+      @entry_hash[:body] = @entry_body
+      @entry_hash
+    end
   end
 end

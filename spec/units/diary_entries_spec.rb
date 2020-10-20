@@ -49,5 +49,15 @@ describe DiaryEntry do
     it 'repsonds to call' do
       expect(diary_entry).to respond_to(:save_entry)
     end
+
+    it 'creates hash of entry data' do
+      body = "My first entry\nline 2 of entry\nfinal line of entry here..."
+      title = "Title of First Entry"
+      date = ""
+      allow(diary_entry).to receive(:gets).and_return("My first entry", "line 2 of entry", "final line of entry here...", "", "Title of First Entry")
+      diary_entry.add_entry
+      diary_entry.add_title
+      expect(diary_entry.save_entry).to eq ({date: Time.now.strftime("%d/%m/%Y"), title: title, body: body})
+    end
   end
 end
