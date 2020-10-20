@@ -1,4 +1,5 @@
 require 'time'
+require 'pg'
 
 class DiaryEntry
 
@@ -40,5 +41,15 @@ class DiaryEntry
 
   def add_to_db
 
+    begin
+      @diary_db = PG.connect :dbname => 'diary_manager', :user => 'ben'
+      puts "Successfully Connected!"
+
+    rescue PG::Error
+      puts "error loading database!"
+
+    #ensure
+      #@bookmark_db.close if @bookmark_db
+    end
   end
 end

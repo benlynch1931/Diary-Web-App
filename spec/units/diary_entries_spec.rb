@@ -67,5 +67,9 @@ describe DiaryEntry do
     it 'responds to call' do
       expect(diary_entry).to respond_to(:add_to_db)
     end
+
+    it 'successfully connects to the database' do
+      expect { diary_entry.add_to_db }.to output("Successfully Connected!\n").to_stdout
+    end
   end
 end
