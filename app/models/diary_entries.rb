@@ -2,6 +2,7 @@ class DiaryEntry
 
   def initialize
     @entry_body = ""
+    @entry_title = ""
 
   end
 
@@ -21,5 +22,8 @@ class DiaryEntry
 
   def add_title
     @entry_title = gets.chomp
+  end
+
+  def save_entry
   end
 end

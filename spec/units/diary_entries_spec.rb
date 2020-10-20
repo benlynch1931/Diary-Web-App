@@ -42,4 +42,12 @@ describe DiaryEntry do
       expect(diary_entry.add_title).to eq "First Entry"
     end
   end
+
+  context '#save_entry' do
+    subject(:diary_entry) { DiaryEntry.new }
+
+    it 'repsonds to call' do
+      expect(diary_entry).to respond_to(:save_entry)
+    end
+  end
 end
