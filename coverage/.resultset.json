@@ -1,0 +1,41 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/ben/Desktop/IT Portfolio/MAKERS/COURSE/Week04/diary-app/app/controllers/app.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/ben/Desktop/IT Portfolio/MAKERS/COURSE/Week04/diary-app/app/models/diary_entries.rb": {
+        "lines": [
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/ben/Desktop/IT Portfolio/MAKERS/COURSE/Week04/diary-app/spec/units/diary_entries_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          2,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1603190480
+  }
+}
