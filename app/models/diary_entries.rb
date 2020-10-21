@@ -18,6 +18,7 @@ class DiaryEntry
         @entry_body.delete_suffix!("\n")
         break
       else
+        @entry_input.gsub("'", "\'") if @entry_input.include?("'")
         @entry_body << "#{@entry_input}\n"
       end
     end
@@ -26,6 +27,11 @@ class DiaryEntry
 
   def add_title
     @entry_title = gets.chomp
+    if @entry_title.include?("'")
+      @entry_title.gsub("'", "\'")
+    else
+      @entry_title
+    end
   end
 
   def save_entry
@@ -42,8 +48,9 @@ class DiaryEntry
   def add_to_db
     init_database
 
-    @diary_db.exec "INSERT INTO diary VALUES('1', '\"#{@entry_hash[:date]}\"', '\"#{@entry_hash[:title]}\"', '\"#{@entry_hash[:body]}\"')"
-    @diary_entry.close
+    @diary_db.exec "INSERT INTO diary(date, title, body) VALUES( '#{@entry_hash[:date]}', '#{@entry_hash[:title]}', '#{@entry_hash[:body]}')"
+    @diary_db.close
+    puts "Successfully saved to diary"
   end
 
   def init_database

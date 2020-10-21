@@ -41,6 +41,11 @@ describe DiaryEntry do
       allow(diary_entry).to receive(:gets).and_return("First Entry")
       expect(diary_entry.add_title).to eq "First Entry"
     end
+
+    it "formats any apostrophes to begin with a backslash" do
+      allow(diary_entry).to receive(:gets).and_return("First Entry's")
+      expect(diary_entry.add_title).to eq "First Entry\'s"
+    end
   end
 
   context '#save_entry' do
@@ -57,7 +62,7 @@ describe DiaryEntry do
       allow(diary_entry).to receive(:gets).and_return("My first entry", "line 2 of entry", "final line of entry here...", "", "Title of First Entry")
       diary_entry.add_entry
       diary_entry.add_title
-      expect(diary_entry.save_entry).to eq ({date: Time.now.strftime("%d/%m/%Y"), title: title, body: body})
+      expect(diary_entry.save_entry).to eq ({date: Time.now.strftime("%Y%m%d"), title: title, body: body})
     end
   end
 
@@ -69,7 +74,11 @@ describe DiaryEntry do
     end
 
     it 'successfully connects to the database' do
-      expect { diary_entry.add_to_db }.to output("Successfully Connected!\n").to_stdout
+      # allow(diary_entry).to receive(:gets).and_return("My first entry", "line 2 of entry", "final line of entry here...", "", "Title of First Entry")
+      # diary_entry.add_entry
+      # diary_entry.add_title
+      # diary_entry.save_entry
+      expect { diary_entry.init_database }.to output("Successfully Connected!\n").to_stdout
     end
   end
 end
