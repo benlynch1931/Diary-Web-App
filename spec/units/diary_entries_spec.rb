@@ -28,6 +28,12 @@ describe DiaryEntry do
       entry = "My first entry\nline 2 of entry\nfinal line of entry here..."
       expect(diary_entry.add_entry).to eq entry
     end
+
+    it "formats any apostrophes to begin with a backslash" do
+      allow(diary_entry).to receive(:gets).and_return("My first entry's here", "line 2 of entry", "final line of entry here...", "")
+      entry = "My first entry\'s here\nline 2 of entry\nfinal line of entry here..."
+      expect(diary_entry.add_entry).to eq entry
+    end
   end
 
   context '#add_title' do
