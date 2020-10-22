@@ -38,6 +38,8 @@ body {
   width: 50px;
   height: 24px;
 
+  border-radius: 4px;
+
   display: inline-flex;
   flex-grow: 1;
   align-items: flex-end;
@@ -60,11 +62,11 @@ body {
 .entry {
 
   width: 66.7%;
-  height: 105px;
+  height: auto;
 
   margin-top: 5px;
   margin-bottom: 10px;
-  padding: 0;
+  padding: 10px;
 
   border-radius: 9px;
   box-shadow: 2px 2px #DBDBDB;
@@ -74,20 +76,62 @@ body {
   z-index: 5;
 }
 
-.title {
-  border-style: solid;
+.title, .body, .footer {
+
   width: auto;
-  height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  background-color: #EBE8DF;
+}
+.title {
+
+  height: 33px;
+  margin-bottom: 4px;
+
+  border-radius: 9px;
+
+  font-size: 20px;
 }
 
 .body {
-  border-style: solid;
-  width: auto;
-  height: 50px;
+
+  height: 44px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+
 }
 
 .footer {
-  border-style: solid;
-  width: auto;
-  height: 20px;
+
+  height: 24px;
+  margin-top: 4px;
+
+
+  border-radius: 9px;
+  display: flex;
+
+  font-size: 15px;
+
+}
+
+.footer div {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: flex-end;
+  vertical-align: middle;
+
+  padding-bottom: 6px;
+}
+
+.footer-date {
+  width: 60%;
+}
+
+.footer-tags {
+  widows: 40%;
 }

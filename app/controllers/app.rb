@@ -12,9 +12,18 @@ class DiaryApp < Sinatra::Base
 
 
   get '/week' do
-    diary_entry = DiaryEntry.new
-    @entries = diary_entry.print_entries
-    erb :week
+    # @entries = DiaryEntry.print_entries("WHERE date BETWEEN #{Date.today.beginning_of_week.strftime('%Y%m%d')} AND #{(Date.today.end_of_week - 2.days).strftime('%Y%m%d')}")
+    # erb :week
+    redirect '/day'
+  end
+
+  get '/day' do
+    @entries = DiaryEntry.print_entries("")
+    erb :day
+  end
+
+  get '/month' do
+    redirect '/day'
   end
 
   run! if app_file == $0
