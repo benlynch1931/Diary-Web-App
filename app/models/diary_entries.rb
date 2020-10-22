@@ -54,7 +54,11 @@ class DiaryEntry
     puts 'Successfully saved to diary'
   end
 
-  
+  def self.print_entries
+    @@diary_db = PG.connect dbname: 'diary_manager_test', user: 'ben'
+    result = @@diary_db.exec("SELECT * FROM diary;")
+    mapped = result.map { |entry| { date: (entry['date'].split('-').reverse.join('-')), title: entry['title'], body: entry['body']} }
+  end
 
   def init_database
     begin

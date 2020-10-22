@@ -93,5 +93,13 @@ describe DiaryEntry do
     end
   end
 
-  
+  context ' #print_entries' do
+    subject(:diary_entry) { DiaryEntry.new }
+    it "returns all entries" do
+      set_table
+      add_to_print_entry
+      diary_entry.add_to_db
+      expect(DiaryEntry.print_entries).to eq([{date: '22-10-2020', title: 'Test Title', body: 'Test Body'}])
+    end
+  end
 end
