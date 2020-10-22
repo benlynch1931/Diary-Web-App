@@ -18,17 +18,16 @@ class DiaryEntry
         @entry_body.delete_suffix!("\n")
         break
       else
-        @entry_input.gsub("'", "\'") if @entry_input.include?("'")
         @entry_body << "#{@entry_input}\n"
       end
     end
-    @entry_body
+    @entry_body = @entry_body.gsub("'", "''")
   end
 
   def add_title
     @entry_title = gets.chomp
     if @entry_title.include?("'")
-      @entry_title.gsub("'", "\'")
+      @entry_title.gsub("'", "''")
     else
       @entry_title
     end
@@ -47,7 +46,6 @@ class DiaryEntry
 
   def add_to_db
     init_database
-
     @diary_db.exec "
       INSERT INTO diary(date, title, body)
       VALUES( '#{@entry_hash[:date]}', '#{@entry_hash[:title]}', '#{@entry_hash[:body]}');
@@ -56,14 +54,20 @@ class DiaryEntry
     puts 'Successfully saved to diary'
   end
 
+  
+
   def init_database
     begin
-      @diary_db = PG.connect dbname: 'diary_manager', user: 'ben'
+      if ENV["RACK_ENV"] == 'test'
+        @diary_db = PG.connect dbname: 'diary_manager_test', user: 'ben'
+      else
+        @diary_db = PG.connect dbname: 'diary_manager', user: 'ben'
+      end
       puts 'Successfully Connected!'
     rescue PG::Error
       puts 'error loading database!'
-    ensure
-      @diary_db&.close
     end
   end
+
+
 end

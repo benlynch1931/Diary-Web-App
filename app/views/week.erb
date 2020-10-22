@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
+    <title></title>
+  </head>
+  <body>
+
+    <div class="displays">
+
+      <div class="set-view">
+        <!-- <h1>Weekly View</h1> -->
+        <div class="day" role='button' onclick="window.location.href='/day'">Day</div>
+        <div class="week" role='button' onclick="window.location.href='/week'">Week</div>
+        <div class="month" role='button' onclick="window.location.href='/month'">Month</div>
+      </div>
+      <div class="forward-backward">
+
+      </div>
+    </div>
+    <div class="listed-entries">
+      <% @entries.each do |entry| %>
+        <div class="entry">
+          <div class="title"></div>
+          <div class="body"></div>
+          <div class="footer"></div>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>
