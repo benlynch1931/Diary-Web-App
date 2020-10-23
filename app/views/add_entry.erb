@@ -2,13 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/add_entry_style.css">
     <title></title>
   </head>
   <body>
-  <form class="" action="/add_entry" method="post">
-    <input type="text" name="title_entry" maxlength="100">
-    <textarea name="body_entry" maxlength="1000"></textarea>
-    <input type="submit" id="add-button" value="Add">
-  </form>
+    <div class="main-form">
+    <form class="" action="/add_entry" method="post">
+      <label class="title-label" for="title_entry">Title:</label>
+      <input type="text" class="title-box" name="title_entry" maxlength="100">
+      <label class="title-label" for="body_entry">Body:</label>
+      <textarea class="body-box" name="body_entry" maxlength="1000"></textarea>
+      <input type="submit" id="add-button" value="Add">
+    </form>
+  </div>
   </body>
 </html>

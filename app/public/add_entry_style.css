@@ -1,0 +1,33 @@
+body {
+
+  background-color: #F0EDE4;
+}
+
+.main-form {
+
+  width: 25%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  border-radius: 9px;
+  box-shadow: 2px 2px #DBDBDB;
+
+  background-color: #DBD7C8;
+
+  text-align: center;
+}
+
+.title-box, .body-box {
+  width: 90%;
+  margin-bottom: 15px;
+  margin-top: 6px;
+}
+
+.title-box {
+  height: 20px;
+}
+
+.body-box {
+  height: 150px;
+  overflow-y: scroll;
+}
