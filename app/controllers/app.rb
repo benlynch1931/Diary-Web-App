@@ -12,6 +12,7 @@ class DiaryApp < Sinatra::Base
   set :session_secret, ENV["SESSION_SECRET"]
 
   get '/' do
+    session[:date] = Date.today.strftime('%Y-%m-%d')
     session[:allow_edit] = nil
     erb :index
   end
@@ -48,8 +49,13 @@ class DiaryApp < Sinatra::Base
 
   get '/day' do
     @allow_edit = session[:allow_edit]
-    @entries = DiaryEntry.print_entries("")
+    @entries = DiaryEntry.print_entries("WHERE date='#{session[:date]}'")
     erb :day
+  end
+
+  post '/day/today' do
+    session[:date] = Date.today.strftime('%Y-%m-%d')
+    redirect '/day'
   end
 
   get '/month' do
