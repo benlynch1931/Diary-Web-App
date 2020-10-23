@@ -8,9 +8,10 @@ describe DiaryEntry do
     set_table
   end
   # I know it is bad English, it is just there for testing purposes!
-  multi_line_entry = "My first entry''s here\nline 2 of entry\nfinal line of entry here..."
+  multi_line_entry1 = "My first entry's here\nline 2 of entry\nfinal line of entry here..."
+  multi_line_entry2 = "My first entry''s here\nline 2 of entry\nfinal line of entry here..."
   single_line_entry = 'My first entry'
-  date = Time.now.strftime('%Y%m%d')
+  date = Time.now.strftime('%Y-%m-%d')
 
   context ' #initialize' do
     subject(:diary_entry) { DiaryEntry.new }
@@ -34,13 +35,13 @@ describe DiaryEntry do
 
     it 'allows user to enter multiple line entries' do
       allowing_spec
-      expect(diary_entry.add_entry).to eq multi_line_entry
+      expect(diary_entry.add_entry).to eq multi_line_entry1
     end
 
-    it 'formats any apostrophes to begin with a backslash' do
-      allowing_spec
-      expect(diary_entry.add_entry).to eq multi_line_entry
-    end
+    # it 'formats any apostrophes to begin with a backslash' do
+    #   allowing_spec
+    #   expect(diary_entry.add_entry).to eq multi_line_entry
+    # end
   end
 
   context ' #add_title' do
@@ -55,10 +56,10 @@ describe DiaryEntry do
       expect(diary_entry.add_title).to eq 'First Entry'
     end
 
-    it 'formats any apostrophes to begin with a backslash' do
-      allow(diary_entry).to receive(:gets).and_return("First Entry's")
-      expect(diary_entry.add_title).to eq "First Entry''s"
-    end
+    # it 'formats any apostrophes to begin with a backslash' do
+    #   allow(diary_entry).to receive(:gets).and_return("First Entry's")
+    #   expect(diary_entry.add_title).to eq "First Entry''s"
+    # end
   end
 
   context ' #save_entry' do
@@ -71,7 +72,7 @@ describe DiaryEntry do
     it 'creates hash of entry data' do
       title = 'Title of First Entry'
       add_entries_spec
-      expect(diary_entry.save_entry).to eq({ date: date, title: title, body: multi_line_entry })
+      expect(diary_entry.save_entry).to eq({ date: date, title: title, body: multi_line_entry2 })
     end
   end
 
@@ -99,7 +100,7 @@ describe DiaryEntry do
       set_table
       add_to_print_entry
       diary_entry.add_to_db
-      expect(DiaryEntry.print_entries).to eq([{date: '22-10-2020', title: 'Test Title', body: 'Test Body'}])
+      expect(DiaryEntry.print_entries("")).to eq([{date: '23-10-2020', title: 'Test Title', body: 'Test Body'}])
     end
   end
 end

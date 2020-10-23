@@ -1,0 +1,21 @@
+body {
+
+  background-color: #F0EDE4;
+}
+
+.add-entry, .show-entry {
+
+  width: 100px;
+  height: 20px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 3px;
+
+  border-radius: 5px;
+  background-color: #DBDBDB;
+}
+
+.add-entry:hover, .show-entry:hover {
+  cursor: pointer;
+  background-color: #EDEDED;
+}

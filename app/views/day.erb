@@ -16,13 +16,37 @@
         <div class="month" role='button' onclick="window.location.href='/month'">Month</div>
       </div>
       <div class="forward-backward">
-
+        <div class="back" role='button' onclick="window.location.href='/day'" style='background-color: #FFFFFF;'><-</div>
+        <div class="today" role='button' onclick="window.location.href='/week'">Today</div>
+        <div class="forward" role='button' onclick="window.location.href='/month'">-></div>
       </div>
     </div>
     <div class="listed-entries">
       <% @entries.each do |entry| %>
         <div class="entry">
-          <div class="title"><strong><%= entry[:title] %></strong></div>
+          <div class="header">
+            <div class='title'><strong><%= entry[:title] %></strong></div>
+            <div class='edit-class'>
+              <% if @allow_edit == entry[:id] %>
+                <div class="delete">
+                  <form action="/allow_delete" method="post">
+                    <input type="submit" name="delete" value="Delete">
+                    <input type="hidden" name="id" value="<%= entry[:id] %>">
+                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                  </form>
+                </div>
+              <% else %>
+                <div class="delete-hidden"></div>
+              <% end %>
+              <div class="edit">
+                <form action="/allow_edit" method="post">
+                  <input class = "image-edit" type="image" name="edit" src="/edit_icon.png" alt="Edit" ><!--<img src="/edit_icon.png" class='image'>-->
+                  <input type="hidden" name="id" value="<%= entry[:id] %>">
+                </form>
+              </div>
+
+            </div>
+          </div>
           <div class="body"><i><%= entry[:body][0..320] %>...</i></div>
           <div class="footer">
             <div class="footer-date">

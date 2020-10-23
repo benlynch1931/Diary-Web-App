@@ -4,6 +4,8 @@ require 'pg'
 
 # this class allows the creation and saving of diary entries
 class DiaryEntry
+  @@post = ""
+
   def initialize
     @entry_body = ''
     @entry_title = ''
@@ -21,28 +23,37 @@ class DiaryEntry
         @entry_body << "#{@entry_input}\n"
       end
     end
-    @entry_body = @entry_body.gsub("'", "''")
+    # @entry_body = @entry_body.gsub("'", "''")
+    @entry_body
   end
 
   def add_title
     @entry_title = gets.chomp
-    if @entry_title.include?("'")
-      @entry_title.gsub("'", "''")
-    else
-      @entry_title
-    end
+    # if @entry_title.include?("'")
+      # @entry_title.gsub("'", "''")
+    # else
+      # @entry_title
+    # end
   end
 
-  def save_entry
-    if @entry_body.empty? || @entry_title.empty?
+  def save_entry(entry_title: @entry_title, entry_body: @entry_body)
+    if entry_body.empty? || entry_title.empty?
       puts 'Unable to save. Entry incomplete...'
     else
-      @entry_hash[:date] = Time.now.strftime('%Y%m%d')
-      @entry_hash[:title] = @entry_title
-      @entry_hash[:body] = @entry_body
+      @entry_hash[:date] = Time.now.strftime('%Y-%m-%d')
+      puts @entry_hash[:date]
+      @entry_hash[:title] = entry_title.gsub("'", "''")
+      @entry_hash[:body] = entry_body.gsub("'", "''")
       @entry_hash
     end
   end
+
+  # def save_entry_online(entry_title:, entry_body:)
+  #     @entry_hash[:date] = Time.now.strftime('%Y%m%d')
+  #     @entry_hash[:title] = :entry_title.to_s.gsub("'", "''")
+  #     @entry_hash[:body] = :entry_body.to_s.gsub("'", "''")
+  #     @entry_hash
+  # end
 
   def add_to_db
     init_database
@@ -61,8 +72,24 @@ class DiaryEntry
       @@diary_db = PG.connect dbname: 'diary_manager', user: 'ben'
     end
     result = @@diary_db.exec("SELECT * FROM diary #{conditions};")
-    mapped = result.map { |entry| { date: (entry['date'].split('-').reverse.join('-')), title: entry['title'], body: entry['body']} }
+    mapped = result.map { |entry| { id: entry['id'], date: (entry['date'].split('-').reverse.join('-')), title: entry['title'], body: entry['body']} }
   end
+
+  def self.allow_edit(post)
+    @@post = post
+  end
+
+  def self.post
+    @@post
+  end
+
+  def delete_entry(id_input:)
+    init_database
+    id_int = id_input.to_i
+    puts id_int
+    @diary_db.exec("DELETE FROM diary WHERE id=#{id_int}")
+  end
+
 
   def init_database
     begin
@@ -76,6 +103,7 @@ class DiaryEntry
       puts 'error loading database!'
     end
   end
+
 
 
 end

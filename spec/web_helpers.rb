@@ -22,4 +22,6 @@ end
 def set_table
   db = PG.connect(dbname: 'diary_manager_test')
   db.exec("TRUNCATE TABLE diary;")
+  db.exec("INSERT INTO diary(date, title, body) VALUES('#{Date.today.strftime('%Y-%m-%d')}', 'Test Title', 'Test Body');")
+  db.exec("INSERT INTO diary(date, title, body) VALUES('#{Date.today.strftime('%Y-%m-%d')}', 'Test Title2', 'Test Body2');")
 end

@@ -1,25 +1,31 @@
 body {
-  /* margin-top: 10px;
-  margin-left: 40px; */
 
   background-color: #F0EDE4;
 }
 
 .displays {
 
-  width: 100%;
+  width: 40%;
   height: 50px;
 
   margin-top: 20px;
   margin-left: 10px;
+  margin-bottom: 15px;
 
+  display: flex;
 }
+
+.displays div {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
 .set-view {
 
   width: 150px;
   height: 24px;
-
-
+  margin-right: 7.5%;
 
   background-color: #B3B1B1;
   border-radius: 4px;
@@ -28,15 +34,30 @@ body {
   justify-content: center;
   align-items: center;
 
+  z-index: 3;
+}
+
+.forward-backward {
+
+  width: 100px;
+  height: 24px;
+  margin-left: 7.5%;
+
+  background-color: #B3B1B1;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   z-index: 3;
 }
 
-.set-view div {
-
+.set-view div , .forward-backward div {
 
   width: 50px;
-  height: 24px;
+  height: 22px;
+  padding-bottom: 2px;
 
   border-radius: 4px;
 
@@ -50,7 +71,7 @@ body {
   z-index: 4;
 }
 
-.set-view div:hover {
+.set-view div:hover , .forward-backward div:hover {
 
   cursor: pointer;
   background-color: #FFFFFF;
@@ -76,7 +97,7 @@ body {
   z-index: 5;
 }
 
-.title, .body, .footer {
+.header, .body, .footer {
 
   width: auto;
   padding-left: 10px;
@@ -84,10 +105,11 @@ body {
   padding-top: 6px;
   background-color: #EBE8DF;
 }
-.title {
+.header {
 
   height: 33px;
   margin-bottom: 4px;
+  padding-bottom: 2px;
 
   border-radius: 9px;
 
@@ -116,7 +138,6 @@ body {
   display: flex;
 
   font-size: 15px;
-
 }
 
 .footer div {
@@ -134,4 +155,45 @@ body {
 
 .footer-tags {
   widows: 40%;
+}
+
+.header {
+  display: flex;
+}
+.title, .edit-class {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+.title {
+
+  width: 85%;
+  margin: 0;
+}
+
+.edit-class {
+
+  width: 15%;
+  margin: 0;
+  padding-bottom: 2px;
+
+  /* background-color: #FFFFFF; */
+}
+
+.delete, .delete-hidden {
+  width: 75%;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.edit {
+  width: 25%;
+  text-align: right;
+}
+.edit:hover, .delete:hover {
+  cursor: pointer;
+}
+
+.image-edit {
+  width: 75%;
 }
