@@ -1,8 +1,4 @@
-CREATE TABLE diary (id SERIAL PRIMARY KEY, date DATE, title VARCHAR(100), body VARCHAR(1000));
 
-
-
-UNIT - DiaryEntry: Red/Green ''
 
 
 # TITLE
@@ -41,3 +37,10 @@ UNIT - DiaryEntry: Red/Green ''
 `% shotgun --port=6030`
 - Go to your browser and type this in the URL: <br>
 `localhost:6030`
+
+
+CREATE TABLE diary (id SERIAL PRIMARY KEY, date DATE, title VARCHAR(100), body VARCHAR(1000));
+
+
+
+UNIT - DiaryEntry: Red/Green ''
